@@ -1,15 +1,23 @@
-Source: template-repository
-Section: unknown
+Source: blop
+Section: sound
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian QA Group <packages@qa.debian.org>
+Build-Depends: debhelper-compat (= 13), autotools-dev, ladspa-sdk
+Standards-Version: 4.5.0
 
-Package: template-repository
+Package: blop
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Provides: ladspa-plugin
+Description: Bandlimited wavetable-based oscillator plugins for LADSPA hosts
+ BLOP comprises a set of LADSPA plugins that generate bandlimited
+ sawtooth, square, variable pulse and slope-variable triangle waves,
+ for use in LADSPA aware audio applications, principally as components
+ of a modular synthesis network.
+ .
+ They are wavetable based, and are designed to produce output with
+ harmonic content as high as possible over a wide pitch range.
+ .
+ Additionally, there are a few extra plugins to assist in building
+ synthesis networks, like a analogue-type sequencer, sync-square and
+ ADSR envelope.

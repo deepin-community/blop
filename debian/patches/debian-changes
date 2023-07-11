@@ -1,0 +1,90 @@
+--- blop-0.2.8.orig/po/de.po
++++ blop-0.2.8/po/de.po
+@@ -1,4 +1,4 @@
+-# German translations by Maroi Lang for blop
++# German translations by Mario Lang for blop
+ # Copyright (C) 2003 Mike Rawes
+ # This file is distributed under the same license as the package.
+ # Mario Lang <mlang@delysid.org>.
+@@ -105,17 +105,17 @@ msgstr ""
+ 
+ #: src/dahdsr_2021.so.c:756
+ msgid "DAHDSR Envelope with Gate and Trigger (Audio-Rate Inputs)"
+-msgstr "DAHDSR Hullkurve mit Gatter und Auslöseimpuls (Audio Eingänge)"
++msgstr "DAHDSR Hüllkurve mit Gatter und Auslöseimpuls (Audio-Eingänge)"
+ 
+ #: src/dahdsr_2021.so.c:757
+ msgid "DAHDSR Envelope with Gate and Trigger (Control Inputs)"
+-msgstr "DAHDSR Hüllkurve mit Gatter und Auslöseimpuls (Kontroll Eingänge)"
++msgstr "DAHDSR Hüllkurve mit Gatter und Auslöseimpuls (Kontroll-Eingänge)"
+ 
+ #: src/dahdsr_2021.so.c:758
+ #, fuzzy
+ msgid "DAHDSR Envelope with Control Gate and Trigger (Control Inputs)"
+ msgstr ""
+-"DAHDSR Hüllkurve mit Kontroll Gatter und Auslöseimpuls (Kontroll Eingänge)"
++"DAHDSR Hüllkurve mit Kontroll Gatter und Auslöseimpuls (Kontroll-Eingänge)"
+ 
+ #: src/dahdsr_2021.so.c:844
+ msgid "Delay Time (s)"
+--- blop-0.2.8.orig/src/Makefile.am
++++ blop-0.2.8/src/Makefile.am
+@@ -33,19 +33,40 @@ wavedatadir = $(ladspa_plugin_dir)/$(wav
+ noinst_PROGRAMS = wavegen
+ wavegen_SOURCES = wavegen.c wdatutil.c
+ wavegen_DEPENDENCIES = include/wdatutil.h include/common.h
+-wavegen_LINK = $(COMPILE) -lc -lm -o $@
++wavegen_LDADD = -lc -lm
++wavegen_LINK = $(COMPILE) -o $@
+ 
+ ## Need to specify sources so that make dist will include them
++adsr_1653_so_SOURCES = adsr_1653.so.c
++adsr_1680_so_SOURCES = adsr_1680.so.c
++amp_1654_so_SOURCES = amp_1654.so.c
++branch_1673_so_SOURCES = branch_1673.so.c
++fmod_1656_so_SOURCES = fmod_1656.so.c
++difference_2030_so_SOURCES = difference_2030.so.c
++interpolator_1660_so_SOURCES = interpolator_1660.so.c
++dahdsr_2021_so_SOURCES = dahdsr_2021.so.c
++
+ lp4pole_1671_so_SOURCES = lp4pole_1671.so.c lp4pole_filter.c
++product_1668_so_SOURCES = product_1668.so.c
++
+ pulse_1645_so_SOURCES = pulse_1645.so.c wavedata.c
+ quantiser20_2027_so_SOURCES = quantiser.so.c
+ quantiser50_2028_so_SOURCES = quantiser.so.c
+ quantiser100_2029_so_SOURCES = quantiser.so.c
++random_1661_so_SOURCES = random_1661.so.c
++ratio_2034_so_SOURCES = ratio_2034.so.c
++
+ sawtooth_1641_so_SOURCES = sawtooth_1641.so.c wavedata.c
++sum_1665_so_SOURCES = sum_1665.so.c
++
+ sequencer64_1675_so_SOURCES = sequencer.so.c
+ sequencer32_1676_so_SOURCES = sequencer.so.c
+ sequencer16_1677_so_SOURCES = sequencer.so.c
++sync_pulse_2023_so_SOURCES = sync_pulse_2023.so.c
++sync_square_1678_so_SOURCES = sync_square_1678.so.c
++
+ square_1643_so_SOURCES = square_1643.so.c wavedata.c
++tracker_2025_so_SOURCES = tracker_2025.so.c
+ triangle_1649_so_SOURCES = triangle_1649.so.c wavedata.c
+ 
+ adsr_1653_so_DEPENDENCIES = include/common.h
+@@ -87,13 +108,13 @@ sequencer16_1677.so$(EXEEXT): sequencer.
+ 
+ ## Remove optimisation, as -O1 or greater will cause quantiser to fail. I Don't Know Why.
+ quantiser20_2027.so$(EXEEXT): quantiser.so.c
+-	$(LINK) -O0 -DQUANTISER_MAX_INPUTS=20 -DQUANTISER_BASE_ID=2027 -lm quantiser.so.c
++	$(LINK) -O0 -DQUANTISER_MAX_INPUTS=20 -DQUANTISER_BASE_ID=2027 quantiser.so.c
+ 
+ quantiser50_2028.so$(EXEEXT): quantiser.so.c
+-	$(LINK) -O0 -DQUANTISER_MAX_INPUTS=50 -DQUANTISER_BASE_ID=2028 -lm quantiser.so.c
++	$(LINK) -O0 -DQUANTISER_MAX_INPUTS=50 -DQUANTISER_BASE_ID=2028 quantiser.so.c
+ 
+ quantiser100_2029.so$(EXEEXT): quantiser.so.c
+-	$(LINK) -O0 -DQUANTISER_MAX_INPUTS=100 -DQUANTISER_BASE_ID=2029 -lm quantiser.so.c
++	$(LINK) -O0 -DQUANTISER_MAX_INPUTS=100 -DQUANTISER_BASE_ID=2029 quantiser.so.c
+ 
+ parabola_1649_data.so.c: wavegen
+ 	./wavegen -r $(sample_rate) -f $(first_note) -s $(note_step) \
