@@ -1,5 +1,126 @@
-template-repository (1.0-1) unstable; urgency=medium
+blop (0.2.8-8) unstable; urgency=medium
 
-  * Initial release
+  * QA upload.
+  * Convert to 3.0 (quilt) format (Closes: #1007685).
+  * d/copyright: Convert to machine-readable format.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Bastian Germann <bage@debian.org>  Fri, 26 Aug 2022 16:42:16 +0200
+
+blop (0.2.8-7) unstable; urgency=medium
+
+  * QA upload.
+  * Set Debian QA Group as maintainer. (see #840289)
+  * src/Makefile.am: add the missing .c targets so it builds after regenerating
+    the build scripts. Thanks to Otavio Salvador.
+  * Using new DH level format. Consequently:
+      - debian/compat: removed.
+      - debian/control: changed from 'debhelper' to 'debhelper-compat' in
+        Build-Depends field and bumped level to 13.
+  * debian/control: bumped Standards-Version to 4.5.0.
+
+ -- Elimar Henrique da Silva <elimar.henrique@yahoo.com.br>  Sat, 09 May 2020 15:30:46 -0300
+
+blop (0.2.8-6.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Build package without NLS, Closes: #672704.
+
+ -- Fabian Greffrath <fabian@debian.org>  Tue, 09 Oct 2018 21:59:31 +0200
+
+blop (0.2.8-6) unstable; urgency=low
+
+  * debian/watch: Use sf.net redirector (Closes: Bug#449847).
+  * debian/control:
+    - Build-Depend on autotools-dev.
+    - Update Standards-Version to 3.9.3.
+  * debian/compat: Bump to 5.
+  * Apply patch to fix FTBFS with --as-needed. (Closes: Bug#606837).
+
+ -- Mario Lang <mlang@debian.org>  Sun, 25 Mar 2012 17:19:49 +0200
+
+blop (0.2.8-5) unstable; urgency=medium
+
+  * Argh, /usr/share/ladspa/rdf, not /usr/lib/ladspa/rdf.  Gosh, I was
+    still sleeping
+
+ -- Mario Lang <mlang@debian.org>  Mon,  1 Jan 2007 15:38:53 +0100
+
+blop (0.2.8-4) unstable; urgency=low
+
+  * Install RDF data into /usr/lib/ladspa/rdf/, not /usr/share/doc/blop/.
+  * Update Standards-Version to 3.7.2.
+
+ -- Mario Lang <mlang@debian.org>  Mon,  1 Jan 2007 14:10:23 +0100
+
+blop (0.2.8-3) unstable; urgency=low
+
+  * Applied patch for de.po from Jens Seidel (Closes: Bug#313673).
+
+ -- Mario Lang <mlang@debian.org>  Thu, 30 Jun 2005 12:58:06 +0200
+
+blop (0.2.8-2) unstable; urgency=low
+
+  * Removed blop_ prefix from LADSPA module names to ensure
+    compatibility to other systems (stupid LADSPA; hosts should use
+    Unique IDs only IMO).
+  * Change debian/watch so that it actually works.
+  * Bumped Standards-Version to 3.6.1 (no changes).
+
+ -- Mario Lang <mlang@debian.org>  Tue, 17 May 2005 13:56:09 +0200
+
+blop (0.2.8-1) unstable; urgency=low
+
+  * New upstream release
+  * Add a debian/watch file
+
+ -- Mario Lang <mlang@debian.org>  Sun, 20 Jun 2004 22:36:12 +0200
+
+blop (0.2.7-2) unstable; urgency=low
+
+  * Add "-fPIC -DPIC -DNO_DEBUG" to CFLAGS in debian/rules (Closes: Bug#207462)
+
+ -- Mario Lang <mlang@debian.org>  Wed, 27 Aug 2003 12:18:02 +0200
+
+blop (0.2.7-1) unstable; urgency=low
+
+  * New upstream release.
+  * Switch to cdbs for building (build-deps adjusted)
+  * Standards-Version 3.6.0 (no direct changes)
+
+ -- Mario Lang <mlang@debian.org>  Tue, 26 Aug 2003 13:33:27 +0200
+
+blop (0.2.6-1) unstable; urgency=low
+
+  * New upstream version.
+    * All changes for 0.2.5 were integrated into upstream.
+  * Install blop.rdf, about.txt and plugins_list.txt as well.
+
+ -- Mario Lang <mlang@debian.org>  Sun,  2 Feb 2003 11:10:14 +0100
+
+blop (0.2.5-4) unstable; urgency=low
+
+  * The "Opps, fix just arrived" release.
+  * Use $(CC) -nostartfiles -shared ... in src/Makefile.am to
+    (hopefully) fix 168021.
+
+ -- Mario Lang <mlang@debian.org>  Thu,  7 Nov 2002 22:06:55 +0100
+
+blop (0.2.5-3) unstable; urgency=low
+
+  * Add AM_MAINTAINER_MODE to configure.in and rerun automake.
+    Hope this one fixes 168155, lets see.
+
+ -- Mario Lang <mlang@debian.org>  Thu,  7 Nov 2002 21:30:10 +0100
+
+blop (0.2.5-2) unstable; urgency=low
+
+  * Remove -m$CPU and -march=$CPU from configure.in CFLAGS
+
+ -- Mario Lang <mlang@debian.org>  Tue,  5 Nov 2002 16:35:10 +0100
+
+blop (0.2.5-1) unstable; urgency=low
+
+  * Initial Debian Package.
+
+ -- Mario Lang <mlang@debian.org>  Tue, 29 Oct 2002 22:50:16 +0100
+
